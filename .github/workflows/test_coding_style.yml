@@ -1,0 +1,45 @@
+name: check coding style
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y gcc libncurses5-dev
+
+      - name: Cache coding-style-checker
+        uses: actions/cache@v2
+        with:
+          path: |
+            coding-style-checker
+          key: ${{ runner.os }}-coding-style-${{ hashFiles('**/coding-style-checker/**') }}
+
+      - name: Coding Style Install
+        run: |
+          if [ ! -d "coding-style-checker" ]; then
+            git clone https://github.com/Epitech/coding-style-checker.git
+          fi
+
+      - name: Run coding style check
+        run: |
+          output=$(./coding-style-checker/coding-style.sh . .)
+          echo "$output"
+          echo "\n======== errors ========\n"
+          cat coding-style-reports.log
+          echo "\n========================\n"
+          errors=$(echo "$output" | grep -oP '\d+(?= coding style error)' || true)
+          if (( errors != 2 )); then
+            exit 1
+          fi
