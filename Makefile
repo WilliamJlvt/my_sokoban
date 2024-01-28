@@ -8,7 +8,7 @@
 CC	=	gcc
 
 SRCS	=	src/main.c							\
-		src/errors.c								\
+		src/errors.c							\
 		src/map/map_parser.c						\
 		src/map/map_manager.c						\
 		src/map/map_checker.c						\
