@@ -44,6 +44,7 @@ DESCRIPTION
 | 08 - final maps tests                           | 4/4    | 100%    |
 | 09 - final winning and losing conditions        | 2/2    | 100%    |
 | total                                           | 36/36  | 100%    |
+
 Final mark: 20
 
 ## Coding style
