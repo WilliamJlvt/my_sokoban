@@ -59,7 +59,7 @@ Unit tests are written using the [Criterion](https://github.com/Snaipe/Criterion
 You can find the tests in the [bonus](bonus) directory. Just run `make` to build the tests and `./my_sokoban_tests` to run them.
 
 ## Authors
-* **William JOLIVET** ([GitHub](https://github.com/WilliamJlvt) / [LinkedIn](https://www.linkedin.com/in/william-jolivet-64951a24b/))
+* **William JOLIVET** ([GitHub](https://github.com/WilliamJlvt) / [LinkedIn](https://www.linkedin.com/in/william-jolivet/))
 
 ## License
 This project is licensed under the GNU Public License version 3.0 - see the [LICENSE](LICENSE) file for details.
