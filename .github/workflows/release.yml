@@ -1,0 +1,41 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up build environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+
+    - name: Build with make
+      run: make
+      
+    - name: Add permissions
+      run: chmod +x ./my_sokoban
+      
+    - name: Create Tag
+      id: tag
+      run: echo "TAG=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          my_sokoban
+        tag_name: ${{ env.TAG }}
+        token: ${{ secrets.TOKEN }}
